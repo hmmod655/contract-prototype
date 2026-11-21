@@ -1,0 +1,17 @@
+{
+  "routes": [
+    { "route": "/.auth/login/github", "statusCode": 404 },
+    { "route": "/403.html", "allowedRoles": ["anonymous"] },
+    { "route": "/*", "allowedRoles": ["reviewer"] }
+  ],
+  "responseOverrides": {
+    "401": { "redirect": "/.auth/login/aad?post_login_redirect_uri=/", "statusCode": 302 },
+    "403": { "rewrite": "/403.html", "statusCode": 403 }
+  },
+  "globalHeaders": {
+    "X-Content-Type-Options": "nosniff",
+    "X-Frame-Options": "DENY",
+    "Referrer-Policy": "no-referrer",
+    "Cache-Control": "no-cache"
+  }
+}
